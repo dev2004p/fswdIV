@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            position: sticky;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cad2c5; /* Background color */
+        }
+        .signupbtn {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .signupbtn a {
+            padding: 10px 20px;
+            background-color: #52796f; /* Button background color */
+            border: none;
+            border-radius: 5px;
+            color: #fff; /* Button text color */
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .signupbtn a:hover {
+            background-color: #84a98c; /* Hover background color */
+        }
+
+        .container {
+            position: sticky;
+            max-width: 400px;
+            margin: 100px auto;
+            height: auto;
+            padding: 40px;
+            border: 2px solid #2f3e46; /* Border color */
+            border-radius: 10px;
+            background-color: rgba(254, 249, 249, 0.92);
+            width: 30vw;
+            justify-content: center;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #354f52; /* Heading color */
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #354f52; /* Label color */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #354f52; /* Submit button background color */
+            border: none;
+            border-radius: 5px;
+            color: #fff; /* Submit button text color */
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        footer p {
+            color: #354f52; /* Footer text color */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form action="/auth/login" method="post" id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Login">
+        <p class="error" id="error-message"></p>
+    </form>
+    <p>Don't have an account?</p>
+    <div class="signupbtn">
+        <a href="/">Signup</a>
+    </div>
+</div>
+<footer>
+    <p>All Rights Reserved.</p>
+    <p>Contact Info: 8200191370 | Email: 22bce242@nirmauni.ac.in</p>
+</footer>
+</body>
+</html>

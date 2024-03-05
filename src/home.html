@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Manager</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #cad2c5; /* Background color */
+        background-image: url('qwd.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .container {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #2f3e46; /* Border color */
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    h2 {
+        text-align: center;
+        color: #354f52; /* Heading color */
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    form input[type="date"],
+    form input[type="text"],
+    form input[type="number"] {
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    form input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4caf50; /* Submit button background color */
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: white;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #4caf50; /* Header background color */
+        color: white;
+    }
+    .graph-container {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+        overflow: hidden;
+    }
+    .share-button {
+        border: 2px solid black;
+        padding: 3px;
+        margin-right: 4px;
+        display: inline-block;
+    }
+    .bar {
+        display: inline-block;
+        width: 10px;
+        margin-right: 3px;
+        background-color: #4caf50; /* Bar background color */
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    #total-monthly-expense {
+        text-align: center;
+        margin-top: 20px;
+        font-weight: bold;
+       
+    }
+    .container a {
+        text-decoration: none;
+        color: #354f52; /* Link color */
+    }
+    #lgo:hover{
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div style="text-align: right;" id="lgo">
+        <a href="/" style="text-decoration: none; color: #354f52;">Logout</a> <!-- Link color -->
+    </div>
+    <h2>Expense Manager</h2>
+    <form action="/home" method="post" id="expense-manager">
+        <input type="date" id="expense-date" required>
+        <input type="text" id="expense-description" placeholder="Description" required>
+        <input type="number" id="expense-quantity" placeholder="Quantity" min="1" required>
+        <input type="number" id="expense-amount" placeholder="Amount per Item" required>
+        <input type="submit" value="Add Expense">
+    </form>
+    <table id="expense-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Amount per Item</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Expenses will be dynamically added here -->
+        </tbody>
+    </table>
+    <div class="graph-container" id="expense-graph">
+        <!-- Expense graph will be dynamically added here -->
+    </div>
+    <div class="share-button">
+        <button onclick="printExpenseDetails()">Share Monthly Expense Details (PDF)</button>
+    </div>
+    <div id="total-monthly-expense"></div>
+</div>
+<script>
+    document.getElementById('expense-manager').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let date = document.getElementById('expense-date').value;
+        let description = document.getElementById('expense-description').value;
+        let quantity = parseInt(document.getElementById('expense-quantity').value);
+        let amount = parseFloat(document.getElementById('expense-amount').value);
+        let totalAmount = quantity * amount;
+
+        addExpense(date, description, quantity, amount, totalAmount);
+        updateGraph();
+        updateTotalMonthlyExpense();
+        document.getElementById('expense-manager').reset();
+    });
+
+    function addExpense(date, description, quantity, amount, totalAmount) {
+        let table = document.getElementById('expense-table').getElementsByTagName('tbody')[0];
+        let newRow = table.insertRow(table.rows.length);
+        let cell1 = newRow.insertCell(0);
+        let cell2 = newRow.insertCell(1);
+        let cell3 = newRow.insertCell(2);
+        let cell4 = newRow.insertCell(3);
+        let cell5 = newRow.insertCell(4);
+
+        cell1.innerHTML = date;
+        cell2.innerHTML = description;
+        cell3.innerHTML = quantity;
+        cell4.innerHTML = amount;
+        cell5.innerHTML = totalAmount.toFixed(2);
+    }
+
+    function updateGraph() {
+        let expenses = document.querySelectorAll('#expense-table tbody tr td:nth-child(5)');
+        let graphContainer = document.getElementById('expense-graph');
+        graphContainer.innerHTML = '';
+
+        expenses.forEach(td => {
+            let expenseAmount = parseFloat(td.textContent);
+            let bar = document.createElement('div');
+            bar.classList.add('bar');
+            bar.style.height = `${expenseAmount / 20}px`;
+            graphContainer.appendChild(bar);
+        });
+    }
+
+    function updateTotalMonthlyExpense() {
+        let expenses = document.querySelectorAll('#expense-table tbody tr td:nth-child(5)');
+        let totalMonthlyExpense = 0;
+        expenses.forEach(td => {
+            totalMonthlyExpense += parseFloat(td.textContent);
+        });
+        document.getElementById('total-monthly-expense').innerText = `Total Monthly Expense: ${totalMonthlyExpense.toFixed(2)}`;
+    }
+
+    function printExpenseDetails() {
+        window.print();
+    }
+</script>
+</body>
+</html>
