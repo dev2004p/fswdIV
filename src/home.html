@@ -1,199 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Expense Manager</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #cad2c5; /* Background color */
-        background-image: url('qwd.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-    .container {
-        max-width: 90%;
-        margin: 20px auto;
-        padding: 20px;
-        border: 1px solid #2f3e46; /* Border color */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cad2c5;
+            /* Background color */
+          
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 90vw;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #000000;
+            /* Border color */
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        h2 {
+            text-align: center;
+            color: #354f52;
+            /* Heading color */
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        form input[type="date"],
+        form input[type="text"],
+        form input[type="number"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            /* Submit button background color */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        table {
+            width: 90vw;
+            overflow: hidden;
+
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #5c9b5c;
+            /* Header background color */
+            color: white;
+            /* width: 110vw; */
+            width:auto;
+        }
+
+        .graph-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .share-button {
+            border: 2px solid black;
+            padding: 1px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        .bar {
+            display: inline-block;
+            width: 10px;
+            margin-right: 3px;
+            background-color: #4caf50;
+            /* Bar background color */
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #total-monthly-expense {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+
+        }
+
+        .container a {
+            text-decoration: none;
+            color: #354f52;
+            /* Link color */
+        }
+
+        #lgo:hover {
+            text-decoration: underline;
+        }
+        .delete-button {
+        padding: 5px 10px;
+        background-color: #d22626; /* Red background color */
+        color: #ffffff; /* Text color */
+        border: none;
         border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.8);
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Add transition effect */
     }
-    h2 {
-        text-align: center;
-        color: #354f52; /* Heading color */
-    }
+    .delete-button:hover {
+    background-color: #0a170a; /* Change background color on hover */
+}
+        
+@media only screen and (max-width: 791px) {
     form {
-        display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        margin-bottom: 20px;
     }
     form input[type="date"],
     form input[type="text"],
-    form input[type="number"] {
-        padding: 10px;
-        margin-right: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+    form input[type="number"],
     form input[type="submit"] {
-        padding: 10px 20px;
-        background-color: #4caf50; /* Submit button background color */
-        border: none;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
+        width: calc(100% - 20px); /* Adjusting width to accommodate padding */
+        margin: 5px 0;
+        justify-content: center;
     }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        background-color: white;
+    .container{
+        max-width:90%;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid #2f3e46;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
     }
-    th, td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
+    .table1{
+        width:100%;
     }
-    th {
-        background-color: #4caf50; /* Header background color */
-        color: white;
-    }
-    .graph-container {
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: white;
-        overflow: hidden;
-    }
-    .share-button {
-        border: 2px solid black;
-        padding: 3px;
-        margin-right: 4px;
-        display: inline-block;
-    }
-    .bar {
-        display: inline-block;
-        width: 10px;
-        margin-right: 3px;
-        background-color: #4caf50; /* Bar background color */
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-    #total-monthly-expense {
-        text-align: center;
-        margin-top: 20px;
-        font-weight: bold;
-       
-    }
-    .container a {
-        text-decoration: none;
-        color: #354f52; /* Link color */
-    }
-    #lgo:hover{
-        text-decoration: underline;
-    }
-</style>
-</head>
-<body>
-<div class="container">
-    <div style="text-align: right;" id="lgo">
-        <a href="/" style="text-decoration: none; color: #354f52;">Logout</a> <!-- Link color -->
-    </div>
-    <h2>Expense Manager</h2>
-    <form action="/home" method="post" id="expense-manager">
-        <input type="date" id="expense-date" required>
-        <input type="text" id="expense-description" placeholder="Description" required>
-        <input type="number" id="expense-quantity" placeholder="Quantity" min="1" required>
-        <input type="number" id="expense-amount" placeholder="Amount per Item" required>
-        <input type="submit" value="Add Expense">
-    </form>
-    <table id="expense-table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Amount per Item</th>
-                <th>Total Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Expenses will be dynamically added here -->
-        </tbody>
-    </table>
-    <div class="graph-container" id="expense-graph">
-        <!-- Expense graph will be dynamically added here -->
-    </div>
-    <div class="share-button">
-        <button onclick="printExpenseDetails()">Share Monthly Expense Details (PDF)</button>
-    </div>
-    <div id="total-monthly-expense"></div>
-</div>
-<script>
-    document.getElementById('expense-manager').addEventListener('submit', function(event) {
-        event.preventDefault();
-        let date = document.getElementById('expense-date').value;
-        let description = document.getElementById('expense-description').value;
-        let quantity = parseInt(document.getElementById('expense-quantity').value);
-        let amount = parseFloat(document.getElementById('expense-amount').value);
-        let totalAmount = quantity * amount;
+    .table1 tr {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* Hide table header cells */
+        .table1 th {
+            display: none;
+        }
+        
+        /* Display table data cells as block */
+        .table1 td {
+            display: block;
+            text-align: left;
+            width: 100%;
+            border: none;
+            text-align: left;
+        }
 
-        addExpense(date, description, quantity, amount, totalAmount);
-        updateGraph();
-        updateTotalMonthlyExpense();
-        document.getElementById('expense-manager').reset();
+}
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div style="text-align: right;" id="lgo">
+            <form action="/logout" method="get">
+                <button type="submit" style="background: none; border: none; padding: 0; font: inherit; cursor: pointer; text-decoration: underline; color: #354f52;">
+                    Logout
+                </button>
+            </form>
+        </div>
+        <h3 style="text-align: center;"><strong>Welcome,</strong> <span id="username"></span>!</h3>
+
+        <h1 style="text-align: center;">Expense Manager</h1>
+        <form action="/home" method="post" id="expense-manager">
+            <input type="date" id="expense-date" name="date" required>
+            <input type="text" id="expense-description" name="description" placeholder="Description" required>
+            <input type="number" id="expense-quantity" name="quantity" placeholder="Quantity" min="1" required>
+            <input type="number" id="expense-amount" name="amount" placeholder="Amount per Item" required>
+            <input type="submit" value="Add Expense">
+        </form>
+        <table id="expense-table" class="table1">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Amount per Item</th>
+                    <th>Total Amount</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Expenses will be dynamically added here -->
+            </tbody>
+        </table>
+        <div class="graph-container" id="expense-graph">
+            <!-- Expense graph will be dynamically added here -->
+        </div>
+        <div class="share-button">
+            <button onclick="printExpenseDetails()">Share Monthly Expense Details (PDF)</button>
+        </div>
+        <div id="total-monthly-expense"></div>
+    </div>
+    <script>
+        // Function to fetch and display expenses
+        // Function to fetch and display expenses
+async function fetchAndDisplayExpenses() {
+    const response = await fetch("/home/profile", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+    });
+    const data = await response.json();
+
+    const expenseTable = document.getElementById('expense-table').getElementsByTagName('tbody')[0];
+    expenseTable.innerHTML = ''; // Clear existing table rows
+
+    data.expenses.forEach(expense => {
+        const newRow = expenseTable.insertRow();
+        newRow.innerHTML = `
+            <td>${expense.date}</td>
+            <td>${expense.description}</td>
+            <td>${expense.quantity}</td>
+            <td>${expense.amount}</td>
+            
+            <td>${expense.quantity * expense.amount}</td> <!-- Calculate and display total amount -->
+            <td><button class="delete-button">Delete</button></td>
+        `;
+
+        const deleteButton = newRow.querySelector('.delete-button');
+        deleteButton.addEventListener('click', async () => {
+            const response = await fetch('/deleteExpense', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ expenseId: expense._id })
+            });
+
+            if (response.ok) {
+                newRow.remove();
+                updateTotalMonthlyExpense();
+                updateGraph();
+            }
+        });
     });
 
-    function addExpense(date, description, quantity, amount, totalAmount) {
-        let table = document.getElementById('expense-table').getElementsByTagName('tbody')[0];
-        let newRow = table.insertRow(table.rows.length);
-        let cell1 = newRow.insertCell(0);
-        let cell2 = newRow.insertCell(1);
-        let cell3 = newRow.insertCell(2);
-        let cell4 = newRow.insertCell(3);
-        let cell5 = newRow.insertCell(4);
+    updateTotalMonthlyExpense();
+    updateGraph();
+}
 
-        cell1.innerHTML = date;
-        cell2.innerHTML = description;
-        cell3.innerHTML = quantity;
-        cell4.innerHTML = amount;
-        cell5.innerHTML = totalAmount.toFixed(2);
+window.addEventListener('DOMContentLoaded', fetchAndDisplayExpenses);
+
+// Form submission handler
+const expenseForm = document.getElementById('expense-manager');
+expenseForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(expenseForm);
+    const formObject = {};
+    formData.forEach((value, key) => {
+        formObject[key] = value;
+    });
+
+    const response = await fetch('/home', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formObject)
+    });
+
+    if (response.ok) {
+        expenseForm.reset(); // Clear the form
+        fetchAndDisplayExpenses(); // Fetch and display updated expenses
     }
+});
 
-    function updateGraph() {
-        let expenses = document.querySelectorAll('#expense-table tbody tr td:nth-child(5)');
-        let graphContainer = document.getElementById('expense-graph');
-        graphContainer.innerHTML = '';
+// Function to update total monthly expense
+function updateTotalMonthlyExpense() {
+            let expenses = document.querySelectorAll('#expense-table tbody tr td:nth-child(5)');
+            let totalMonthlyExpense = 0;
+            expenses.forEach(td => {
+                totalMonthlyExpense += parseFloat(td.textContent);
+            });
+            document.getElementById('total-monthly-expense').innerText = `Total Monthly Expense: ${totalMonthlyExpense.toFixed(2)}`;
+        }
 
-        expenses.forEach(td => {
-            let expenseAmount = parseFloat(td.textContent);
-            let bar = document.createElement('div');
-            bar.classList.add('bar');
-            bar.style.height = `${expenseAmount / 20}px`;
-            graphContainer.appendChild(bar);
+// Function to update the graph
+function updateGraph() {
+            let expenses = document.querySelectorAll('#expense-table tbody tr td:nth-child(5)');
+            let graphContainer = document.getElementById('expense-graph');
+            graphContainer.innerHTML = '';
+
+            expenses.forEach(td => {
+                let expenseAmount = parseFloat(td.textContent);
+                let bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${expenseAmount / 20}px`;
+                graphContainer.appendChild(bar);
+            });
+        }
+
+// Fetch username and update welcome message
+async function fetchUsernameAndDisplay() {
+    try {
+        const response = await fetch("/home/profile", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
         });
+        const data = await response.json();
+        document.getElementById("username").innerText = `${data.username}`;
+    } catch (error) {
+        console.error(error);
     }
+}
 
-    function updateTotalMonthlyExpense() {
-        let expenses = document.querySelectorAll('#expense-table tbody tr td:nth-child(5)');
-        let totalMonthlyExpense = 0;
-        expenses.forEach(td => {
-            totalMonthlyExpense += parseFloat(td.textContent);
-        });
-        document.getElementById('total-monthly-expense').innerText = `Total Monthly Expense: ${totalMonthlyExpense.toFixed(2)}`;
-    }
+// Call the function to fetch and display username when the page loads
+window.onload = () => {
+    fetchAndDisplayExpenses();
+    fetchUsernameAndDisplay();
+};
 
-    function printExpenseDetails() {
-        window.print();
-    }
-</script>
-</body>
+function printExpenseDetails() {
+    window.print();
+}
+
+    </script>
+    
+   </body>
+
 </html>

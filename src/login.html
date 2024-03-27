@@ -36,15 +36,13 @@
         }
 
         .container {
-            position: sticky;
-            max-width: 400px;
+            max-width: 40vw;
             margin: 100px auto;
-            height: auto;
             padding: 40px;
             border: 2px solid #2f3e46; /* Border color */
             border-radius: 10px;
             background-color: rgba(254, 249, 249, 0.92);
-            width: 30vw;
+            width: 80%;
             justify-content: center;
         }
         h2 {
@@ -91,6 +89,13 @@
         }
         footer p {
             color: #354f52; /* Footer text color */
+        }
+
+        /* Media query for smaller screens */
+        @media only screen and (max-width: 600px) {
+            .container {
+                max-width: 70%;
+            }
         }
     </style>
 </head>
