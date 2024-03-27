@@ -57,7 +57,7 @@ app.post("/auth/signup", async (req, res) => {
         await User.create({ username, password });
 
         // Redirect to home page upon successful signup
-        res.redirect('/home');
+        res.redirect('/login');
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
