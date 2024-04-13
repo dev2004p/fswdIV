@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
 // Create User model
 const User = mongoose.model('User', userSchema);
 
+app.get("/aboutus", (req, res) => {
+    res.sendFile(path.join(__dirname, 'aboutus.html'));
+});
+
 // Serve the signup page as the first page
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'Signup.html'));
