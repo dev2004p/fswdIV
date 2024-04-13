@@ -105,6 +105,10 @@ app.post("/auth/login", async (req, res) => {
     }
 });
 
+app.get("/aboutus.html", (req, res) => {
+    res.sendFile(path.join(__dirname, 'aboutus.html'));
+});
+
 app.get('/home/profile', async (req, res) => {
     // Check if user is logged in
     if (!req.session.user) {
