@@ -140,6 +140,21 @@
     .delete-button:hover {
     background-color: #0a170a; /* Change background color on hover */
 }
+            #about a {
+            
+            color: #000000;
+            transition: color 0.3s ease;
+            /* Transition effect for color change */
+        }
+
+        #about a:active {
+          
+    color: #ff0000; /* Change to desired color when link is clicked */
+   
+}
+ #about a:hover{
+    text-decoration: underline; 
+ }
         
 @media only screen and (max-width: 791px) {
     form {
@@ -232,6 +247,9 @@
             <button onclick="printExpenseDetails()">Share Monthly Expense Details (PDF)</button>
         </div>
         <div id="total-monthly-expense"></div>
+         <div id="about" style="text-align:right;">
+            <a href="aboutus.html">About Us</a>
+        </div>
     </div>
     <script>
         // Function to fetch and display expenses
