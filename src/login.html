@@ -3,121 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login | Techwave Solutions Ltd. Expense Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            position: sticky;
-            background-size: cover;
-            height: 100vh;
-            width: 100vw;
-            background-position: center;
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #cad2c5; /* Background color */
+            box-sizing: border-box;
         }
-        .signupbtn {
-            text-align: left;
-            margin-top: 20px;
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
         }
-        .signupbtn a {
-            padding: 10px 20px;
-            background-color: #52796f; /* Button background color */
-            border: none;
-            border-radius: 5px;
-            color: #fff; /* Button text color */
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+
+        .header {
+            background: linear-gradient(135deg, #606c38, #e9edc9);
+            padding: 40px;
+            text-align: center;
+            color: #fff;
         }
-        .signupbtn a:hover {
-            background-color: #84a98c; /* Hover background color */
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
         }
 
         .container {
-            max-width: 40vw;
-            margin: 100px auto;
+            width: 40%;
+            margin: 80px auto;
             padding: 40px;
-            border: 2px solid #2f3e46; /* Border color */
-            border-radius: 10px;
-            background-color: rgba(254, 249, 249, 0.92);
-            width: 80%;
-            justify-content: center;
-        }
-        h2 {
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
             text-align: center;
-            margin-bottom: 20px;
-            color: #354f52; /* Heading color */
         }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #588157;
+            font-weight: 600;
+        }
+
         form {
             margin-top: 20px;
         }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #354f52; /* Label color */
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #00457C;
+            text-align: left;
         }
+
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
         input[type="submit"] {
             width: 100%;
-            padding: 10px;
-            background-color: #354f52; /* Submit button background color */
+            padding: 12px;
+            background-color: #a3b18a;
             border: none;
             border-radius: 5px;
-            color: #fff; /* Submit button text color */
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
+        input[type="submit"]:hover {
+            background-color: #3a5a40;
+        }
+
         .error {
             color: red;
             margin-top: 10px;
             text-align: center;
         }
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-        }
-        footer p {
-            color: #354f52; /* Footer text color */
+
+        p {
+            margin-top: 20px;
+            font-size: 1rem;
         }
 
-        /* Media query for smaller screens */
-        @media only screen and (max-width: 600px) {
+        p a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .signupbtn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .signupbtn a {
+            padding: 10px 20px;
+            background-color: #52796f;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signupbtn a:hover {
+            background-color: #84a98c;
+        }
+
+        @media (max-width: 768px) {
             .container {
-                max-width: 70%;
+                width: 80%;
+                padding: 20px;
             }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f3f4f6;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #ddd;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #354f52;
+        }
+
+        footer .contact-info {
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>Login</h2>
-    <form action="/auth/login" method="post" id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" value="Login">
-        <p class="error" id="error-message"></p>
-    </form>
-    <p>Don't have an account?</p>
-    <div class="signupbtn">
-        <a href="/">Signup</a>
+
+    <header class="header">
+        <h1>Techwave Solutions Ltd.</h1>
+        <p>Efficient Expense Manager</p>
+    </header>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/auth/login" method="post" id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+            <p class="error" id="error-message"></p>
+        </form>
+
+        <p>Don't have an account?</p>
+        <div class="signupbtn">
+            <a href="/">Signup</a>
+        </div>
     </div>
-</div>
-<footer>
-    <p>All Rights Reserved.</p>
-    <p>Contact Info: 8200191370 | Email: 22bce242@nirmauni.ac.in</p>
-</footer>
+
+    <footer>
+        <p>&copy; 2024 Techwave Solutions Ltd. All Rights Reserved.</p>
+        <div class="contact-info">
+            <p>Contact Info: 8200191370 | Email: 22bce242@nirmauni.ac.in</p>
+        </div>
+    </footer>
+
 </body>
 </html>
